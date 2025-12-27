@@ -1,7 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"os"
+	"vsharp/internal/cli"
+)
 
 func main() {
-	fmt.Println("Hello, world!")
+	cli.Run(os.Args)
 }

@@ -24,5 +24,8 @@ jobs:
         with:
           go-version: ${{ matrix.go }}
 
+      - name: Run Tests
+        run: go test ./...
+
       - name: Build
         run: bash scripts/build.sh

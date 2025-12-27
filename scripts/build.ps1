@@ -40,12 +40,12 @@ function Fail {
 
 function Info {
     param ([string]$Message)
-    Write-Host "==> $Message" -ForegroundColor Cyan
+    Write-Host "==> $Message"
 }
 
 function Success {
     param ([string]$Message)
-    Write-Host "==> $Message" -ForegroundColor Green
+    Write-Host "==> $Message"
 }
 
 function Warn {
