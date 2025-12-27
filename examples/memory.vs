@@ -1,6 +1,5 @@
-public main() {
-    var x: int64 = new(20);
-    print(x); // 20
-    print(&x); // address of x
-    delete x;
+private static add(int64[a, b]) int64 {
+}
+
+private sub(int8[a, b]) int8 {
 }

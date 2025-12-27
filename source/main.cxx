@@ -1,6 +1,8 @@
 #include <iostream>
 #include <fstream>
 #include "include/token.hxx"
+#include "include/parser.hxx"
+#include "include/ast.hxx"
 
 int main(int argc, char *argv[])
 {
@@ -20,12 +22,16 @@ int main(int argc, char *argv[])
     std::string source((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
     Lexer lexer(std::move(source), argv[1]);
 
-    while (true)
+    Parser parser(lexer);
+    try
     {
-        Token tok = lexer.next();
-        std::cout << int(tok.Type) << " : " << tok.Lexeme << '\n';
-        if (tok.Type == TokenType::EndOfFile)
-            break;
+        ASTNodePtr ast = parser.parserProgram();
+        printAST(ast.get());
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << "Parser error: " << e.what() << "\n";
+        return 1;
     }
 
     return 0;

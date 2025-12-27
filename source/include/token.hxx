@@ -140,6 +140,8 @@ inline const std::vector<Keyword> keywords = {
     {"define", TokenType::KwDefine},
     {"typedef", TokenType::KwTypedef},
     {"class", TokenType::KwClass},
+    {"true", TokenType::Boolean},
+    {"false", TokenType::Boolean},
     {"int8", TokenType::KwInt8},
     {"int16", TokenType::KwInt16},
     {"int32", TokenType::KwInt32},
@@ -181,6 +183,7 @@ struct Lexer
      */
     Token next();
 
+    int precedence(TokenType type) const;
 private:
     /**
      * @brief Peek at a character in the source code without advancing.

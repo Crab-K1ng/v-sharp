@@ -132,6 +132,35 @@ Token Lexer::scanLineComment(size_t line, size_t column)
     return makeToken(TokenType::Comment, start, end, line, column);
 }
 
+int Lexer::precedence(TokenType type) const
+{
+    switch (type)
+    {
+    case TokenType::Vbar:
+    case TokenType::Colon:
+        return 1;
+    case TokenType::And:
+        return 2;
+    case TokenType::Equal:
+    case TokenType::NotEqual:
+        return 3;
+    case TokenType::LessThan:
+    case TokenType::LessEqual:
+    case TokenType::GreaterThan:
+    case TokenType::GreaterEqual:
+        return 4;
+    case TokenType::Plus:
+    case TokenType::Minus:
+        return 5;
+    case TokenType::Asterisk:
+    case TokenType::Slash:
+    case TokenType::Percent:
+        return 6;
+    default:
+        return 0;
+    }
+}
+
 Token Lexer::next()
 {
     skipWhitespace();

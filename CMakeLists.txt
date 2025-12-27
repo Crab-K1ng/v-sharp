@@ -35,14 +35,14 @@ else()
     endif()
 endif()
 
-target_include_directories(vsharp PRIVATE ${PROJECT_SOURCE_DIR}/include)
+target_include_directories(vsharp PRIVATE ${PROJECT_SOURCE_DIR}/source/include)
 
 add_executable(lexer_tests
     tests/lexer_tests.cxx
     source/lexer.cxx
 )
 
-target_include_directories(lexer_tests PRIVATE ${PROJECT_SOURCE_DIR}/include)
+target_include_directories(lexer_tests PRIVATE ${PROJECT_SOURCE_DIR}/source/include)
 
 enable_testing()
 add_test(NAME LexerTests COMMAND lexer_tests)
