@@ -34,6 +34,8 @@ set(VSHARP_SOURCES
     source/lexer.cxx
     source/parser.cxx
     source/ast.cxx
+    source/lsp.cxx
+    source/server.cxx
 )
 
 add_executable(vsharp ${VSHARP_SOURCES})

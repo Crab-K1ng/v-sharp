@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <parser.hxx>
+#include <server.hxx>
 
 int main(int argc, char *argv[])
 {
@@ -10,7 +11,14 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    std::ifstream file(argv[1], std::ios::binary);
+    std::string command = argv[1];
+    if (command == "lsp")
+    {
+        runLSP();
+        return 0;
+    }
+
+    std::ifstream file(command, std::ios::binary);
     if (!file)
     {
         std::cerr << "Cannot open file\n";
