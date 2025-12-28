@@ -1,5 +1,5 @@
 #include <stdexcept>
-#include "parser.hxx"
+#include <parser.hxx>
 
 void Parser::expect(TokenType type)
 {

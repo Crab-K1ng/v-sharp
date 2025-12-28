@@ -1,7 +1,7 @@
 #pragma once
 
-#include "ast.hxx"
-#include "token.hxx"
+#include <ast.hxx>
+#include <token.hxx>
 
 struct Parser
 {
