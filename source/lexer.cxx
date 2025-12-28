@@ -28,16 +28,6 @@ void Lexer::skipWhitespace()
         advance();
 }
 
-void Lexer::consumeEscape()
-{
-    if (peek() == '\\')
-    {
-        advance();
-        if (peek() != '\0')
-            advance();
-    }
-}
-
 Token Lexer::makeToken(TokenType type, size_t start, size_t end, size_t line, size_t column) const
 {
     return Token{type, std::string_view(Source.data() + start, end - start), File, line, column};
@@ -67,16 +57,22 @@ Token Lexer::scanString(size_t line, size_t column)
 {
     size_t start = Position;
     advance();
-
-    while (peek() != '\0' && peek() != '"')
+    while (peek() != '\0')
     {
-        consumeEscape();
-        if (peek() != '"')
+        if (peek() == '"')
+        {
             advance();
-    }
-
-    if (peek() == '"')
+            break;
+        }
+        if (peek() == '\\')
+        {
+            advance();
+            if (peek() != '\0')
+                advance();
+            continue;
+        }
         advance();
+    }
     return makeToken(TokenType::String, start, Position, line, column);
 }
 
@@ -84,11 +80,14 @@ Token Lexer::scanByte(size_t line, size_t column)
 {
     size_t start = Position;
     advance();
-
-    consumeEscape();
-    if (peek() != '\'' && peek() != '\0')
+    if (peek() == '\\')
+    {
         advance();
-
+        if (peek() != '\0')
+            advance();
+    }
+    else if (peek() != '\0')
+        advance();
     if (peek() == '\'')
         advance();
     return makeToken(TokenType::Byte, start, Position, line, column);

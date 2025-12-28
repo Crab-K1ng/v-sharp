@@ -205,11 +205,6 @@ private:
     void skipWhitespace();
 
     /**
-     * @brief COnsume a backslash escape sequence if present.
-     */
-    void consumeEscape();
-
-    /**
      * @brief Create a token from the source range.
      * @param type Token type
      * @param start Start index in the source
