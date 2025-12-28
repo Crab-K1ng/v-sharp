@@ -35,7 +35,6 @@ set(VSHARP_SOURCES
     source/parser.cxx
     source/ast.cxx
     source/lsp.cxx
-    source/server.cxx
     source/cli.cxx
 )
 

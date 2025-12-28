@@ -2,7 +2,7 @@
 #include <iostream>
 #include <functional>
 #include <cli.hxx>
-#include <server.hxx>
+#include <lsp.hxx>
 
 int main(int argc, char *argv[])
 {
@@ -24,7 +24,8 @@ int main(int argc, char *argv[])
     };
     commands["lsp"] = [](const auto &)
     {
-        runLSP();
+        LSPServer server;
+        server.runLSP();
     };
     commands["compile"] = [](const auto &args)
     {
