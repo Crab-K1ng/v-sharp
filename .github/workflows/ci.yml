@@ -38,10 +38,14 @@ jobs:
           Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
           scoop install winflexbison cmake
 
-      - name: Add Scoop shims to PATH
-        run: echo "${{ env.USERPROFILE }}\\scoop\\shims" >> $GITHUB_PATH
+      - name: Build (Windows)
+        if: runner.os == 'Windows'
+        run: |
+          cmake -S . -B build -DFLEX_EXECUTABLE="${{ env.USERPROFILE }}\\scoop\\shims\\flex.exe"
+          cmake --build build
 
-      - name: Build
+      - name: Build (Unix)
+        if: runner.os != 'Windows'
         run: |
           cmake -S . -B build
           cmake --build build

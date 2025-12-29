@@ -151,7 +151,7 @@ public:
   virtual int yywrap();
 
 protected:
-  virtual int LexerInput( char* buf, YYLEXER_SIZE_TYPE max_size );
+  virtual YYLEXER_SIZE_TYPE LexerInput( char* buf, YYLEXER_SIZE_TYPE max_size );
   virtual void LexerOutput( const char* buf, YYLEXER_SIZE_TYPE size );
   virtual void LexerError( const char* msg );
 
